@@ -1,0 +1,192 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Prevent font size inflation */
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core body defaults */
+body {
+  line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1, h2, h3, h4,
+button, input, label {
+  line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1, h2,
+h3, h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input, button,
+textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* ----ELEMENTS---- */
+
+/* @link https://utopia.fyi/type/calculator?c=240,16,1.25,1240,20,1.333,4,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+/* @link https://utopia.fyi/space/calculator?c=240,16,1.25,1240,20,1.333,4,1,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+:root {
+  --ff: "guyot-sans";
+  --fw-light: 200;
+  --fw-normal: 400;
+  --fw-bold: 700;
+  --fw-black: 900;
+  --fs--1: clamp(0.8rem, 0.7669rem + 0.2204vi, 0.9377rem);
+  --fs-0: clamp(1rem, 0.94rem + 0.4vi, 1.25rem);
+  --fs-1: clamp(1.25rem, 1.1501rem + 0.666vi, 1.6663rem);
+  --fs-2: clamp(1.5625rem, 1.4044rem + 1.0538vi, 2.2211rem);
+  --fs-3: clamp(1.9531rem, 1.7113rem + 1.6122vi, 2.9607rem);
+  --fs-4: clamp(2.4414rem, 2.0801rem + 2.4084vi, 3.9467rem);
+  --space-3xs: clamp(0.25rem, 0.235rem + 0.1vi, 0.3125rem);
+  --space-2xs: clamp(0.5rem, 0.47rem + 0.2vi, 0.625rem);
+  --space-xs: clamp(0.75rem, 0.705rem + 0.3vi, 0.9375rem);
+  --space-s: clamp(1rem, 0.94rem + 0.4vi, 1.25rem);
+  --space-m: clamp(1.5rem, 1.41rem + 0.6vi, 1.875rem);
+  --space-l: clamp(2rem, 1.88rem + 0.8vi, 2.5rem);
+  --space-xl: clamp(3rem, 2.82rem + 1.2vi, 3.75rem);
+  --space-2xl: clamp(4rem, 3.76rem + 1.6vi, 5rem);
+  --space-3xl: clamp(6rem, 5.64rem + 2.4vi, 7.5rem);
+  /* One-up pairs */
+  --space-3xs-2xs: clamp(0.25rem, 0.16rem + 0.6vi, 0.625rem);
+  --space-2xs-xs: clamp(0.5rem, 0.395rem + 0.7vi, 0.9375rem);
+  --space-xs-s: clamp(0.75rem, 0.63rem + 0.8vi, 1.25rem);
+  --space-s-m: clamp(1rem, 0.79rem + 1.4vi, 1.875rem);
+  --space-m-l: clamp(1.5rem, 1.26rem + 1.6vi, 2.5rem);
+  --space-l-xl: clamp(2rem, 1.58rem + 2.8vi, 3.75rem);
+  --space-xl-2xl: clamp(3rem, 2.52rem + 3.2vi, 5rem);
+  --space-2xl-3xl: clamp(4rem, 3.16rem + 5.6vi, 7.5rem);
+  /* Custom pairs */
+  --space-s-l: clamp(1rem, 0.64rem + 2.4vi, 2.5rem);
+}
+body {
+  font-family: "guyot-sans", sans-serif;
+  font-size: var(--fs-0);
+}
+header {
+  background-color: rgb(203, 133, 47);
+  justify-content: space-between;
+}
+
+/* ----COMPONENTS---- */
+.menu {
+  gap: var(--space-s);
+  justify-content: space-evenly;
+  list-style: none;
+  margin-block: var(--space-m);
+}
+.visually-hidden {
+  position: absolute;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0;
+  border: 0;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+}
+/* ----UTILITY---- */
+/* * {
+  border: 1px solid black;
+} */
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+.flex-item {
+  flex-wrap: wrap;
+}
+.grid {
+  --gap: var(--space-l);
+  --full: minmax(var(--gap), 1fr);
+  --feature: minmax(0, var(--space-2xl));
+  --popout: minmax(0, var(--space-xl));
+  --content: min(65ch, 100% - (var(--gap) * 2));
+
+  display: grid;
+  grid-template-columns:
+  [full-start] var(--full)
+  [feature-start] var(--feature)
+  [popout-start] var(--popout)
+  [content-start] var(--content)[content-end]
+  var(--popout) [popout-end]
+  var(--feature) [feature-end]
+  var(--full) [full-end];
+}
+.content,
+.content > * {
+  grid-column: content;
+}
+.popout {
+  grid-column: popout;
+}
+.feature {
+  grid-column: feature;
+}
+.full {
+  grid-column: full;
+}
+.fs-hero {
+  font-size: var(--fs-4);
+}
+.fs-heading {
+  font-size: var(--fs-2);
+}
+.fs-subhead {
+  font-size: var(--fs-1);
+}
+.fs-caption {
+  font-size: var(--fs--1);
+}
+.title {
+  margin-left: var(--space-m);
+  margin-block: var(--space-s);
+}
+.menu {
+  margin-right: var(--space-m);
+  margin-block: var(--space-s);
+}
